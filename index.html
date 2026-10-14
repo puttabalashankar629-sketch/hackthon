@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" class="font-md">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduBridge AI — The Learning Gap Detector</title>
+  <meta name="description" content="AI platform that discovers WHY a student struggles with a topic, traces missing foundational knowledge, and builds a personalised recovery path in local languages.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tree.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo">🌱</div>
+      <div class="brand-text">
+        <h1 data-i18n="app_title">EduBridge AI</h1>
+        <span class="brand-tagline" data-i18n="tagline">The Learning Gap Detector</span>
+      </div>
+    </div>
+
+    <!-- Header Tools & Accessibility -->
+    <div class="header-controls">
+      <!-- Network & Engine Badges -->
+      <span class="network-pill online" id="network-status-badge">
+        <span class="dot"></span> Online
+      </span>
+      <span class="engine-pill engine-sim" id="ai-engine-status-badge">
+        🧠 Smart Knowledge Engine
+      </span>
+
+      <!-- Class Selector -->
+      <select class="control-select" id="select-class" aria-label="Select Class Level">
+        <option value="Class 5">Class 5</option>
+        <option value="Class 6" selected>Class 6</option>
+        <option value="Class 7">Class 7</option>
+        <option value="Class 8">Class 8</option>
+      </select>
+
+      <!-- Language Selector -->
+      <select class="control-select" id="select-language" aria-label="Select Language">
+        <option value="en">English</option>
+        <option value="te">తెలుగు (Telugu)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+      </select>
+
+      <!-- Low Internet Toggle -->
+      <button type="button" class="btn-nav-tool" id="btn-low-internet-toggle" title="Toggle Low-Internet / Offline Mode">
+        📶 Low Net
+      </button>
+
+      <!-- High Contrast Toggle -->
+      <button type="button" class="btn-nav-tool" id="btn-contrast-toggle" title="Toggle High Contrast Mode">
+        👁️ Contrast
+      </button>
+
+      <!-- Font Resizing -->
+      <div class="font-controls-group" title="Adjust Font Size">
+        <button type="button" class="btn-font" id="btn-font-dec">A-</button>
+        <button type="button" class="btn-font" id="btn-font-reset">A</button>
+        <button type="button" class="btn-font" id="btn-font-inc">A+</button>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="user-quick-stats">
+        <span class="stat-chip" id="stat-user-xp">140 XP</span>
+        <span class="stat-chip stat-streak" id="stat-user-streak">🔥 3 Day Streak</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Low Internet Mode Notification Banner -->
+  <div class="low-internet-banner" id="low-internet-indicator">
+    <span>📶 <strong>Low-Internet Mode Active:</strong> All quizzes, knowledge trees, local rural stories, and practice questions are cached locally for zero-data usage.</span>
+  </div>
+
+  <!-- Primary Tab Navigation Bar -->
+  <nav class="main-nav-bar" aria-label="Primary Navigation">
+    <button type="button" class="nav-tab-btn active" data-tab="home" data-i18n="nav_home">🏠 Home</button>
+    <button type="button" class="nav-tab-btn" data-tab="diagnostic" data-i18n="nav_diagnostic">⚡ Diagnostic Quiz</button>
+    <button type="button" class="nav-tab-btn" data-tab="tree" data-i18n="nav_tree">🌳 Root Cause Tree</button>
+    <button type="button" class="nav-tab-btn" data-tab="recovery" data-i18n="nav_recovery">🛣️ Recovery Path</button>
+    <button type="button" class="nav-tab-btn" data-tab="practice" data-i18n="nav_practice">✏️ Practice</button>
+    <button type="button" class="nav-tab-btn" data-tab="tutor" data-i18n="nav_tutor">🤖 AI Tutor</button>
+    <button type="button" class="nav-tab-btn" data-tab="teacher" data-i18n="nav_teacher">👩‍🏫 Teacher View</button>
+    <button type="button" class="nav-tab-btn" data-tab="progress" data-i18n="nav_progress">🏆 Progress</button>
+  </nav>
+
+  <!-- Main App Content -->
+  <main class="app-main">
+
+    <!-- VIEW 1: HOME & CURRICULUM EXPLORER -->
+    <section class="view-section" id="view-home">
+      <div class="hero-banner">
+        <div class="hero-text">
+          <h2 data-i18n="hero_title">Discover WHY you struggle with a topic, not just what marks you got.</h2>
+          <p data-i18n="hero_desc">
+            EduBridge AI traces missing concepts from earlier classes, explains lessons through village & daily life examples, and builds your personalized recovery roadmap in your mother tongue.
+          </p>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" id="btn-hero-start-diag" data-i18n="start_diag">
+              ⚡ Start Diagnostic Quiz →
+            </button>
+            <button type="button" class="btn btn-secondary" id="btn-hero-view-tree">
+              🌳 Explore Root Cause Tree
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-hackathon-callout">
+          <span class="callout-badge">SPECIAL HACKATHON FEATURE</span>
+          <h4>Root Cause Learning Tree</h4>
+          <p>
+            When a student fails Grade 6 fractions, we don't repeat fractions! We test Class 4 prerequisites (Equal parts & division) and repair the broken root using roti & water pump analogies.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <div>
+          <h3>Curricular Chapters & Learning Gap Detectors</h3>
+          <p>Select any subject or chapter to identify hidden prerequisite gaps</p>
+        </div>
+      </div>
+
+      <div class="topics-grid" id="topic-cards-grid">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: DIAGNOSTIC QUIZ -->
+    <section class="view-section" id="view-diagnostic" style="display: none;">
+      <div id="diagnostic-container">
+        <!-- Injected dynamically by diagnostic.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 3: ROOT CAUSE LEARNING TREE -->
+    <section class="view-section" id="view-tree" style="display: none;">
+      <div id="tree-view-container">
+        <!-- Injected dynamically by treeView.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 4: PERSONALISED RECOVERY PATH -->
+    <section class="view-section" id="view-recovery" style="display: none;">
+      <div id="recovery-path-container">
+        <!-- Injected dynamically by recoveryPath.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 5: ADAPTIVE PRACTICE -->
+    <section class="view-section" id="view-practice" style="display: none;">
+      <div id="practice-container">
+        <!-- Injected dynamically by practice.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 6: MULTILINGUAL AI TUTOR -->
+    <section class="view-section" id="view-tutor" style="display: none;">
+      <div class="tutor-layout">
+        <div class="tutor-header">
+          <div>
+            <h3><span class="tutor-status-dot"></span> 🤖 Multilingual AI Learning Tutor</h3>
+            <span class="card-caption">Speaks and understands Telugu, Hindi, and English with village analogies</span>
+          </div>
+          <div>
+            <span class="badge badge-accent">Voice & Text Enabled</span>
+          </div>
+        </div>
+
+        <div class="tutor-messages-scroll" id="tutor-messages">
+          <!-- Chat messages injected by tutor.js -->
+        </div>
+
+        <div class="tutor-input-area">
+          <input type="text" class="tutor-text-input" id="tutor-input-text" placeholder="Type or click the microphone to speak your question...">
+          <button type="button" class="btn-mic" id="btn-mic-toggle">
+            🎙️ Speak Doubt
+          </button>
+          <button type="button" class="btn btn-primary" id="btn-tutor-send">
+            Send →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 7: TEACHER DASHBOARD -->
+    <section class="view-section" id="view-teacher" style="display: none;">
+      <div id="teacher-container">
+        <!-- Injected dynamically by teacher.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 8: PROGRESS & BADGES -->
+    <section class="view-section" id="view-progress" style="display: none;">
+      <div id="progress-container">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Voice Assistant Button -->
+  <button type="button" class="floating-voice-btn" id="floating-voice-btn" title="Speak to AI Voice Tutor">
+    🎙️ <span>AI Voice Tutor</span>
+  </button>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/knowledgeData.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/diagnostic.js"></script>
+  <script src="js/treeView.js"></script>
+  <script src="js/tutor.js"></script>
+  <script src="js/practice.js"></script>
+  <script src="js/recoveryPath.js"></script>
+  <script src="js/teacher.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

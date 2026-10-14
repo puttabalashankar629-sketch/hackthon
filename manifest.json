@@ -1,0 +1,16 @@
+{
+  "name": "EduBridge AI — The Learning Gap Detector",
+  "short_name": "EduBridge AI",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#4f46e5",
+  "description": "Discover WHY a student struggles with a topic, identify missing foundational knowledge, and build a personalised recovery path in local languages.",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234f46e5'/><path d='M30 65 L50 25 L70 65 M38 50 L62 50' stroke='white' stroke-width='8' fill='none' stroke-linecap='round'/></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
